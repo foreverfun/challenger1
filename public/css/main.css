@@ -1,0 +1,32 @@
+.index-page {
+  margin-top: 50px;
+  width: 728px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.index-header {
+  background: url(images/banner.jpg) repeat-x 0 0;
+}
+
+.index-content {
+  background-color: #ffffff;
+}
+
+.index-nav {
+  margin-top: 20px;
+}
+
+/* center */
+/*.profile-page {
+  background:#ffffff;
+  padding:20px 20px 5px 20px;
+  top: 100px;
+  right: 200px;
+  text-align:left; 
+}
+
+.profile-pic {
+  
+}
+*/

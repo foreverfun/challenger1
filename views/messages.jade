@@ -1,0 +1,93 @@
+extends layout
+
+block content
+  h1 Find A Tennis Partner!
+
+  //- Menu
+  p
+    a(href="/") Players | 
+    a(href="/messages") Messages |  
+    a(href="/profile") Account | 
+    a(href="/auth/logout") Log out
+
+  h4 Welcome, #{user.name}!
+
+  //- Message
+  h3 Messages:
+  div.msgsection
+    div.messages
+      table.table-striped
+        tr
+          th.col-sm-4
+            | Date
+          th.col-sm-4
+            | Challenger
+          th.col-sm-4
+            | Challenged
+          th.col-sm-4
+            | Status
+          th.col-sm-4
+            | Details
+        for msg in msgs
+          tr.msg(data-msgid="#{msg._id}")
+            td.col-sm-4
+              | #{msg.msgdate}
+            td.col-sm-4
+              | #{msg.invite.name}
+            td.col-sm-4
+              | #{msg.beinvited.name}
+            td.col-sm-4
+              | #{msg.status}
+            td.col-sm-4
+              | 
+              a.viewmsg(href="#") View
+
+  #detailedmsg-modal.modal.fade
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close(type="button", data-dismiss="modal")
+              span &times;
+          h4.modal-title Detailed Message
+        .modal-body
+          p
+            label Challenger:
+            | 
+            label.msgchallenger
+          p
+            label Challenged:
+            | 
+            label.msgchallenged
+          form
+            .form-group
+              lable Play Date Time:
+              | 
+              input.msgplaydatetime.form-control(type="text")
+            .form-group
+              label Court Name:
+              | 
+              input.msgcourtname.form-control(type="text")
+            .form-group
+              label Court Address:
+              | 
+              input.msgcourtaddress.form-control(type="text")
+            .form-group
+              label Message
+              | 
+              textarea.msgcontent.form-control(rows='4', cols='50')
+          p
+            label Previous Conversation:
+            | 
+            label.msgprecontent
+        .modal-footer
+          table
+            tr
+              td.col-sm-4
+                button.btn.btn-primary.sendmsg(type="button") Send 
+              td.col-sm-4
+                button.bth.btn-primary.closemsg(type="button") Close 
+              td.col-sm-4
+                button.btn.btn-primary.deletemsg(type="button") Delete
+
+block scripts
+    script(src="/scripts/msg.js")
