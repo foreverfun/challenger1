@@ -102,7 +102,7 @@ var msgController = {
     console.log(req.body.msgid);
 
     var messageLog = req.body.todaydate + " - " + req.user.name + " : " + req.body.content;    
-    console.log("message:", messageLog);
+    //console.log("message:", messageLog);
     
     Message.findOne({_id:req.body.msgid}, function(err, result){
       // if (result.courtname != req.body.courtname)
