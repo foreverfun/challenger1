@@ -103,7 +103,7 @@ User.find({}, function(err, documents){
       image: "batman.jpeg",
       age: 28,
       gender: "male",
-      ntrp: 4.5,
+      ntrp: 4.0,
       location: "Boulder CO"
     });
     userBatman.save();

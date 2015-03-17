@@ -15,7 +15,6 @@ var playerController = require('./controllers/player');
 var signupController = require('./controllers/signup');
 var profileController = require('./controllers/profile');
 var filterController = require('./controllers/filter');
-var commController = require('./controllers/communication');
 var msgController = require('./controllers/msg');
 
 //======================================================================
@@ -66,7 +65,9 @@ app.get('/messages', msgController.displayMsgs);
 app.get('/message/:id', msgController.displayMsg);
 
 app.post('/filterplayers', filterController.filterPlayers);
-app.post('/msg', commController.msgData);
+app.post('/msg', msgController.saveMsg);
+app.post('/msgu', msgController.updateMsg);
+app.post('/msgc', msgController.closeMsg);
 
 // Start our server!
 var server = app.listen(5297, function() {

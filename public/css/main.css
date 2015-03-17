@@ -17,16 +17,15 @@
   margin-top: 20px;
 }
 
-/* center */
-/*.profile-page {
+h3 {
+  text-align: center;
+}
+
+.profile-page {
   background:#ffffff;
   padding:20px 20px 5px 20px;
   top: 100px;
   right: 200px;
-  text-align:left; 
+  text-align:center; 
 }
 
-.profile-pic {
-  
-}
-*/

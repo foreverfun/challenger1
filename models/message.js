@@ -5,7 +5,8 @@ var messageSchema = mongoose.Schema({
   beinvited: Object,
   courtname: String,
   courtlocation: String,
-  playdatetime: Date,
+  playdate: String,
+  playtime: String,
   msgdate: String,
   content: [String],
   status: String

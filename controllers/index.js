@@ -16,7 +16,7 @@ var indexController = {
 
       usersFromDB.splice(index,1);
 
-      console.log(usersFromDB);
+      //console.log(usersFromDB);
 
       res.render('index', {
         user: req.user,

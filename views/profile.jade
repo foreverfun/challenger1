@@ -1,57 +1,59 @@
 extends layout
+block css
+  link(rel="stylesheet", href="../css/main.css")
 
 block content
-  h1 Find A Tennis Partner!
+  div.index-page
 
-  //- Menu
-  p
-    a(href="/") Players | 
-    a(href="/messages") Messages |  
-    a(href="/profile") Account | 
-    a(href="/auth/logout") Log out
-
-  h4 Welcome, #{user.name}!
+    div.index-header
+      img(src="/images/banner.jpg")
+    
+    div.index-content
   
-  div.profile-page
-    table
-      tr
-        td
-          img(src="//upload.wikimedia.org/wikipedia/en/0/02/Homer_Simpson_2006.png" width="100" height="100")
-        td
-          form
-            .form-group
-              label User Id:
-              | 
+      nav.navbar.navbar-default.navbar-inverse.index-nav
+        div.container-fluid
+          ul.nav.navbar-nav.navbar-right
+            li.active
+              a(href="/") Players
+            li
+              a(href="/messages") Messages
+            li
+              a(href="/profile") Profile
+            li 
+              a(href="/auth/logout") Log Out
+  
+      h3 Welcome, #{user.name}!
+      
+      div.profile-page
+        form
+          .form-group.hidden
+            label User Id:
               input.profile-userid.form-control(type="text", value="#{user._id}")
-            .form-group
-              label Username: 
-              | 
+          .form-group
+              img(src="images4demo/#{user.image}" width="100" height="100")
+          .form-group
+            label Username: 
               input.profile-username.form-control(type="text", value="#{user.username}")
-            .form-group
-              label Name:
-              | 
+          .form-group
+            label Name:
               input.profile-name.form-control(type="text", value="#{user.name}")
-            .form-group
-              label Email:
-              |   
+          .form-group
+            label Email:  
               input.profile-email.form-control(type="email", value="#{user.email}")
-            .form-group
-              label Age:
-              | 
-              input.profile-age.form-contrl(type="number", value="#{user.age}")
-            .form-group Gender:
-              | 
-              input.profile-gender.form-contrl(type="number", value="#{user.gender}")
-            .form-group
-              label NTRP:
-              | 
-              input.profile-ntrp.form-contrl(type="number", value="#{user.ntrp}")
-            .form-group
-              label Location:
-              | 
-              input.location.form-contrl(type="text", value="#{user.location}")
-            .form-group
-              input.profile-save.btn.btn-primary(type="submit" value="Save")
+          .form-group
+            label Age: 
+              input.profile-age.form-control(type="number", value="#{user.age}")
+          .form-group 
+            label Gender: 
+              input.profile-gender.form-control(type="text", value="#{user.gender}")
+          .form-group
+            label NTRP: 
+              input.profile-ntrp.form-control(type="number", value="#{user.ntrp}")
+          .form-group
+            label Location: 
+              input.location.form-control(type="text", value="#{user.location}")
+          .form-group
+            input.profile-save.btn.btn-primary(type="submit" value="Save")
 
 block scripts
   script(src="/scripts/profile.js")  

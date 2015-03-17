@@ -6,7 +6,7 @@ block content
   div.index-page
 
     div.index-header
-      img(src="images/banner.jpg")
+      img(src="/images/banner.jpg")
     
     div.index-content
 
@@ -18,38 +18,47 @@ block content
               li
                 a(href="/messages") Messages
               li
-                a(href="profile") Profile
+                a(href="/profile") Profile
               li 
                 a(href="/auth/logout") Log Out
 
       //- Player List
-      div.playersection
-        div.players 
+      div.contentsection
+        //- Filter
         table.table
           tr
             td(align="right")
               p.filterplayers.button.btn.btn-primary(type="button" data-toggle="modal") Filter
-        
-        table.table.table-bordered
-          tr
+      
+        div.playersection
+          div.players   
+            table.table.table-bordered
+              tr
+                for player in players
+                  td(align="center")
+                    div.player(data-playerid="#{player._id}")
+                      img(src="/images4demo/#{player.image}" height="100px")
+                      .line 
+                        strong #{player.username}
+                      .line 
+                        strong #{player.name}  
+                      .line 
+                        a.viewplayer(href="#") View Profile 
+                      .line
+                        a.compilemsg(href="#") Send Message 
+        //- Broadcast Message
+        div.broadcastsection
+          div.playersid
             for player in players
-              td(align="center")
-                div.player(data-playerid="#{player._id}")
-                  img(src="/images4demo/#{player.image}" height="100px")
-                  .line 
-                    strong #{player.username}
-                  .line 
-                    strong #{player.name}  
-                  .line 
-                    a.viewplayer(href="#") View Profile 
-                  .line
-                    a.compilemsg(href="#") Send Message
-  
-        //- Message 
+              div.playerid 
+                input.playeridvalue.form-control(value="#{player._id}")
+
         table.table
           tr
             td(align="center")
               p.broadcast.button.btn.btn-primary(type="button" data-toggle="modal") Broadcast    
+        
+        
 
   //- View A Player
   #viewplayer-modal.modal.fade
@@ -87,8 +96,41 @@ block content
             | &nbsp;
             label.player-location
         .modal-footer
-          button.btn.btn-primary.compilemsg(type="button") Send Message
           button.btn.btn-default.removepic(data-dismiss="modal") Close
+
+  //- Compile A Message
+  #compilemsg-modal.modal.fade
+    .modal-dailog
+      .modal-content
+        .modal-header
+          button.close(type="button", data-dismiss="modal")
+            span &times;
+          h4.modal-title Compile A Message
+        .modal-body
+          .form-group.hidden
+            label Invite:
+              input.msg-inviteid.form-control(type="text")
+          .form-group.hidden
+            label Be Invited:
+              input.msg-beinvitedid.form-control(type="text")
+          .form-group
+            label Court Name:
+              input.msg-courtname.form-control(type="text")
+          .form-group
+            label Court Address:
+              input.msg-courtaddress.form-control(type="text")
+          .form-group
+            label Date:
+              input.msg-playdate.form-control(type="date")
+          .form-group
+            label Time:
+              input.msg-playtime.form-control(type="time")
+          .form-group
+            label Message: 
+              textarea.msg-content.form-control(rows='4', cols='50') 
+        .modal-footer
+          button.btn.btn-primary.sendmsg(type="button") Send Message
+          button.btn.btn-default(data-dismiss="modal") Close
 
   //- Filter Players
   #filterplayers-modal.modal.fade
@@ -102,9 +144,9 @@ block content
           p
             label Gender:  
               select.filter-gender
-                option(value="1") Male
-                option(value="0") Female
-                option(value="2" selected="selected") Any
+                option(value="male") Male
+                option(value="female") Female
+                option(value="any" selected="selected") Any
           table 
             tr
               td
@@ -158,48 +200,117 @@ block content
                 label 6.0 or Above | Pro
               td
           p
-            label Location:  
+            label City:
             | 
-            input.filter-location(type="string" value="#{user.location}")
+            input.filter-city(type="string")
+          p
+            label State:
+            | 
+            select.filter-state
+              option(value="AL") AL
+              | 
+              option(value="AK") AK
+              | 
+              option(value="AZ") AZ
+              | 
+              option(value="AR") AR
+              | 
+              option(value="CA") CA
+              | 
+              option(value="CO") CO
+              | 
+              option(value="CT") CT
+              | 
+              option(value="DE") DE
+              | 
+              option(value="DC") DC
+              | 
+              option(value="FL") FL
+              | 
+              option(value="GA") GA
+              | 
+              option(value="HI") HI
+              | 
+              option(value="ID") ID
+              | 
+              option(value="IL") IL
+              | 
+              option(value="IN") IN
+              | 
+              option(value="IA") IA
+              | 
+              option(value="KS") KS
+              | 
+              option(value="KY") KY
+              | 
+              option(value="LA") LA
+              | 
+              option(value="ME") ME
+              | 
+              option(value="MD") MD
+              | 
+              option(value="MA") MA
+              | 
+              option(value="MI") MI
+              | 
+              option(value="MN") MN
+              | 
+              option(value="MS") MS
+              | 
+              option(value="MO") MO
+              | 
+              option(value="MT") MT
+              | 
+              option(value="NE") NE
+              | 
+              option(value="NV") NV
+              | 
+              option(value="NH") NH
+              | 
+              option(value="NJ") NJ
+              | 
+              option(value="NM") NM
+              | 
+              option(value="NY") NY
+              | 
+              option(value="NC") NC
+              | 
+              option(value="ND") ND
+              | 
+              option(value="OH") OH
+              | 
+              option(value="OK") OK
+              | 
+              option(value="OR") OR
+              | 
+              option(value="PA") PA
+              | 
+              option(value="RI") RI
+              | 
+              option(value="SC") SC
+              | 
+              option(value="SD") SD
+              | 
+              option(value="TN") TN
+              | 
+              option(value="TX") TX
+              | 
+              option(value="UT") UT
+              | 
+              option(value="VT") VT
+              | 
+              option(value="VA") VA
+              | 
+              option(value="WA") WA
+              | 
+              option(value="WV") WV
+              | 
+              option(value="WI") WI
+              | 
+              option(value="WY") WY
         .modal-footer
           button.btn.btn-primary.runfilterplayers(type="button") Run
           button.btn.btn-default(data-dismiss="modal") Close
-
-    
-    
-    //- Compile A Message
-    #compilemsg-modal.modal.fade
-      .modal-dailog
-        .modal-content
-          .modal-header
-            button.close(type="button", data-dismiss="modal")
-              span &times;
-            h4.modal-title Compile A Message
-          .modal-body
-            .form-group.hidden
-              label Invite:
-                input.msg-inviteid.form-control(type="text")
-            .form-group
-              label Be Invited:
-                input.msg-beinvitedid.form-control(type="text")
-            .form-group
-              label Court Name:
-                input.msg-courtname.form-control(type="text")
-            .form-group
-              label Court Address:
-                input.msg-courtaddress.form-control(type="text")
-            .form-group
-              label Date:
-                input.msg-playdate.form-control(type="date")
-            .form-group
-              label Time:
-                input.msg-playtime.form-control(type="time")
-            .form-group
-              label Message: 
-                textarea.msg-content.form-control(rows='4', cols='50') 
-          .modal-footer
-            button.btn.btn-primary.sendmsg(type="button") Send Message
-            button.btn.btn-default(data-dismiss="modal") Close
 
 block scripts
   //- script.

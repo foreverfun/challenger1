@@ -1,46 +1,55 @@
 extends layout
+block css
+  link(rel="stylesheet", href="../css/main.css")
 
 block content
-  h1 Find A Tennis Partner!
+  div.index-page
 
-  //- Menu
-  p
-    a(href="/") Players | 
-    a(href="/messages") Messages |  
-    a(href="/profile") Account | 
-    a(href="/auth/logout") Log out
+    div.index-header
+      img(src="/images/banner.jpg")
 
-  h4 Welcome, #{user.name}!
+    div.index-content
+      
+      nav.navbar.navbar-default.navbar-inverse.index-nav
+        div.container-fluid
+            ul.nav.navbar-nav.navbar-right
+              li.active
+                a(href="/") Players
+              li
+                a(href="/messages") Messages
+              li
+                a(href="/profile") Profile
+              li 
+                a(href="/auth/logout") Log Out
 
-  //- Message
-  h3 Messages:
-  div.msgsection
-    div.messages
-      table.table-striped
-        tr
-          th.col-sm-4
-            | Date
-          th.col-sm-4
-            | Challenger
-          th.col-sm-4
-            | Challenged
-          th.col-sm-4
-            | Status
-          th.col-sm-4
-            | Details
-        for msg in msgs
-          tr.msg(data-msgid="#{msg._id}")
-            td.col-sm-4
-              | #{msg.msgdate}
-            td.col-sm-4
-              | #{msg.invite.name}
-            td.col-sm-4
-              | #{msg.beinvited.name}
-            td.col-sm-4
-              | #{msg.status}
-            td.col-sm-4
-              | 
-              a.viewmsg(href="#") View
+      //- Message
+      div.msgsection
+        div.messages
+          table.table-striped
+            tr
+              th.col-sm-4
+                | Msg Date
+              th.col-sm-4
+                | Challenger
+              th.col-sm-4
+                | Challenged
+              th.col-sm-4
+                | Status
+              th.col-sm-4
+                | Details
+            for msg in msgs
+              tr.msg(data-msgid="#{msg._id}")
+                td.col-sm-4
+                  | #{msg.msgdate}
+                td.col-sm-4
+                  | #{msg.invite.name}
+                td.col-sm-4 
+                  | #{msg.beinvited.name}
+                td.col-sm-4
+                  | #{msg.status}
+                td.col-sm-4
+                  | 
+                  a.viewmsg(href="#") View
 
   #detailedmsg-modal.modal.fade
     .modal-dialog
@@ -50,44 +59,50 @@ block content
               span &times;
           h4.modal-title Detailed Message
         .modal-body
-          p
-            label Challenger:
-            | 
-            label.msgchallenger
-          p
-            label Challenged:
-            | 
-            label.msgchallenged
+          div
+            label.msgid.hidden
+          div
+            lable.msgdate.hidden
+          div
+            table.table
+              tr
+                td(width="50%")
+                  label.msgchallenger
+                td(width="50%") 
+                  label.msgchallenged
           form
             .form-group
-              lable Play Date Time:
+              label Play Date:
               | 
-              input.msgplaydatetime.form-control(type="text")
+              input.msgplaydate.form-control(type="date")
+            .form-group
+              label Play Time:
+              | 
+              input.msgplaytime.form-control(type="time")
             .form-group
               label Court Name:
               | 
               input.msgcourtname.form-control(type="text")
-            .form-group
+            .form-group.msgcourtdiv
               label Court Address:
               | 
               input.msgcourtaddress.form-control(type="text")
             .form-group
-              label Message
+              label.msgcontentl Message
               | 
               textarea.msgcontent.form-control(rows='4', cols='50')
           p
             label Previous Conversation:
-            | 
-            label.msgprecontent
+          p
+            div.msgprecontent
+              div.msgaddcontent
         .modal-footer
           table
             tr
               td.col-sm-4
-                button.btn.btn-primary.sendmsg(type="button") Send 
+                button.btn.btn-primary.updatemsg(type="button") Send Message
               td.col-sm-4
-                button.bth.btn-primary.closemsg(type="button") Close 
-              td.col-sm-4
-                button.btn.btn-primary.deletemsg(type="button") Delete
+                button.btn.btn-primary.closemsg(type="button") Close Message
 
 block scripts
     script(src="/scripts/msg.js")
