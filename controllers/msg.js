@@ -1,8 +1,8 @@
 var User = require('../models/user');
 var Message = require('../models/message');
-var config = require('../config/email');
+//var config = require('../config/email');
 
-var sendgrid = require('sendgrid')(config.emailAccount, config.emailPassword);
+//var sendgrid = require('sendgrid')(config.emailAccount, config.emailPassword);
 
 var sendEmail = function(msg) {
   var emailsubject = msg.invite.name + " is inviting you to play tennis on " + msg.playdatetime;
