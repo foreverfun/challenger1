@@ -70,6 +70,7 @@ app.post('/msgu', msgController.updateMsg);
 app.post('/msgc', msgController.closeMsg);
 
 // Start our server!
-var server = app.listen(5297, function() {
+var port = process.env.PORT || 8713;
+var server = app.listen(port, function() {
 	console.log('Express server listening on port ' + server.address().port);
 });
